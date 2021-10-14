@@ -11,6 +11,9 @@ To include the plugin, add the following line in between the `<world> </world>` 
 <plugin name='gazebo_occupancy_map' filename='libgazebo_2Dmap_plugin.so'>
     <map_resolution>0.1</map_resolution> <!-- in meters, optional, default 0.1 -->
     <map_height>0.3</map_height>         <!-- in meters, optional, default 0.3 -->
+    <check_below>true</check_below>      <!-- Check for obstacles below map height, default false -->
+    <lower_bound>0.3</lower_bound>       <!-- Lower bound  in meters at which obstacles below map height will be looked at, default 0.3 -->
+    <step>0.1</step>                     <!-- in meters, defines the heights at which occupancy check will be made, giving a range of [map_height, lower_bound[, default 0.1 -->
     <map_size_x>10</map_size_x>          <!-- in meters, optional, default 10 -->
     <map_size_y>10</map_size_y>          <!-- in meters, optional, default 10 -->
     <init_robot_x>0</init_robot_x>          <!-- x coordinate in meters, optional, default 0 -->
