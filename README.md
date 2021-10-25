@@ -28,6 +28,11 @@ To include the plugin, add the following line in between the `<world> </world>` 
     <map_size_y>10</map_size_y>          <!-- in meters, optional, default 10 -->
 </plugin>
 ```
+#### Notes on the parameters
+- **check_below**: set to true, if you want the plugin to start checking for obstacles at **map_height** till the **lower_bound** is reached
+- **lower_bound**: defines the lowest height at which the obstacles exploration may be performed, depending on the **step_size** the exact value may not be used, instead a value within (**lower_bound**,**lower_bound + **step_size**) will be used
+- **step_size**: in meters, determines the next height at which, the exploration will be executed. The first exploration happens at height **map_height**, next at at **map_height** - **step_size**, and so on.
+
 
 To generate the map, call the `/gazebo_2Dmap_plugin/generate_map` ros service:
 
