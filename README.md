@@ -1,10 +1,20 @@
 # gazebo_ros_2Dmap_plugin
-Gazebo simulator plugin to automatically generate a 2D occupancy map from the simulated world at a given certain height. 
+This is a fork of [gazebo_ros_2Dmap_plugin](marinaKollmitz/gazebo_ros_2Dmap_plugin) adapted to be used in conjunction with [arena-rosnav-3D](https://github.com/ignc-research/arena-rosnav-3D).
 
-This plugin was adapted from the [octomap plugin](https://github.com/ethz-asl/rotors_simulator/tree/master/rotors_gazebo_plugins) from ETH Zürich.
+This version adds an additional service to the original repo, namely to create a "layered" obstacle map of any exisiting Gazebo world. User can specify the height interval, which should be considered during the exploration, as well as the step size of exploration simulation, resulting in a single 2D occupancy map, covering a specific height range of the 3D world. 
+
+## arena-rosnav-3D
+We are using this plugin in our simulation environment [arena-rosnav-3D](https://github.com/ignc-research/arena-rosnav-3D) to seamlessly create a 2d map used by the robot for navigation, as well as our manager nodes for random goal / position generation. On top of that we are using the extra "layered" map functionality to generate a separate occupancy map used solely by our obstacle manager and pedsim simulator, making sure that both of those are supplied with more accurate information. Based on your use case your results may vary, but in our experience specifying additional, "layered" map for pedsim agents results in a more realistic behaviour.
 
 ## Usage 
-Check out the plugin in your `catkin_ws` and build it with `catkin_make`.
+If you are coming from **arena-rosnav-3D**, then this plugin should already be in your catkin_ws/src/forks folder, if not then clone this repo into that directory and follow these steps
+
+- Make sure that you have the following package installed
+```
+sudo apt-get install ros-melodic-octomap
+```
+
+- Check out the plugin in your `catkin_ws` and build it with `catkin_make`.
 To include the plugin, add the following line in between the `<world> </world>` tags of your Gazebo world file:
 
 ```
@@ -16,8 +26,6 @@ To include the plugin, add the following line in between the `<world> </world>` 
     <step>0.1</step>                     <!-- in meters, defines the heights at which occupancy check will be made, giving a range of [map_height, lower_bound[, default 0.1 -->
     <map_size_x>10</map_size_x>          <!-- in meters, optional, default 10 -->
     <map_size_y>10</map_size_y>          <!-- in meters, optional, default 10 -->
-    <init_robot_x>0</init_robot_x>          <!-- x coordinate in meters, optional, default 0 -->
-    <init_robot_y>0</init_robot_y>          <!-- y coordinate in meters, optional, default 0 -->
 </plugin>
 ```
 
