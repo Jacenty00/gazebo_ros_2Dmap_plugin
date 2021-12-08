@@ -11,7 +11,7 @@ If you are coming from **arena-rosnav-3D**, then this plugin should already be i
 
 - Make sure that you have the following package installed
 ```
-sudo apt-get install ros-melodic-octomap
+sudo apt-get install ros-noetic-octomap
 ```
 
 - Check out the plugin in your `catkin_ws` and build it with `catkin_make`.
