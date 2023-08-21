@@ -9,6 +9,7 @@ find_package(catkin REQUIRED COMPONENTS
   joint_state_publisher
   kdl_parser
   robot_state_publisher
+  costmap_2d
   roscpp
   rospy
   tf
